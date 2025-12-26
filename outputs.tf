@@ -2,7 +2,7 @@
 # VPC Outputs
 # -------------------------
 output "vpcs" {
-  description = "Map of VPC IDs created"
+  description = "Map of VPC IDs created by the module"
   value       = { for k, v in google_compute_network.vpc : k => v.id }
 }
 

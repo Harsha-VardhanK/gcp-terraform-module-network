@@ -1,7 +1,12 @@
 variable "project_id" {
-  description = "GCP project ID"
   type        = string
+  description = "GCP project ID"
+  validation {
+    condition     = length(var.project_id) > 0
+    error_message = "project_id must not be empty"
+  }
 }
+
 
 variable "region" {
   description = "Region for subnets and NAT"
