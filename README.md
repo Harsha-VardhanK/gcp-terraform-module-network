@@ -94,3 +94,18 @@ Notes
 For private GKE clusters, enable_nat = true is recommended.
 
 This module is multi-project ready; you can reference VPC and subnets from different service/host projects using Terraform provider aliases.
+
+
+## Private Service Access (PSA)
+
+This module optionally supports Private Service Access, which is required for:
+- Cloud SQL (private IP)
+- Memorystore
+- Other managed Google services
+
+To enable PSA:
+
+```hcl
+enable_private_service_access = true
+psa_vpc_key                   = "main"
+psa_ip_cidr_range             = "10.100.0.0/16"
