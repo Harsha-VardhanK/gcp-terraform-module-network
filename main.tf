@@ -57,3 +57,23 @@ resource "google_compute_router_nat" "nat" {
   nat_ip_allocate_option              = "AUTO_ONLY"
   source_subnetwork_ip_ranges_to_nat  = "ALL_SUBNETWORKS_ALL_IP_RANGES"
 }
+
+
+#-------Add only if PSA is enabled
+
+# resource "google_compute_global_address" "psa_range" {
+#   count         = var.enable_private_service_access ? 1 : 0
+#   project       = var.project_id
+#   name          = "psa-range"
+#   purpose       = "VPC_PEERING"
+#   address_type  = "INTERNAL"
+#   prefix_length = split("/", var.psa_ip_cidr_range)[1]
+#   network       = google_compute_network.vpc[var.psa_vpc_key].id
+# }
+
+# resource "google_service_networking_connection" "psa_connection" {
+#   count                   = var.enable_private_service_access ? 1 : 0
+#   network                 = google_compute_network.vpc[var.psa_vpc_key].id
+#   service                 = "servicenetworking.googleapis.com"
+#   reserved_peering_ranges = [google_compute_global_address.psa_range[0].name]
+# }

@@ -36,3 +36,21 @@ variable "enable_nat" {
   type        = bool
   default     = false
 }
+
+variable "enable_private_service_access" {
+  description = "Enable Private Service Access for the VPC"
+  type        = bool
+  default     = false
+}
+
+variable "psa_vpc_key" {
+  description = "VPC key where Private Service Access will be enabled"
+  type        = string
+  default     = null
+}
+
+variable "psa_ip_cidr_range" {
+  description = "CIDR range for Private Service Access"
+  type        = string
+  default     = "10.100.0.0/16"
+}

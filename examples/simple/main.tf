@@ -6,7 +6,7 @@ provider "google" {
 module "networking" {
   source = "../../"
 
-  project_id = "project_id"
+  project_id = "my-sample-project"
   region     = "us-central1"
 
   vpcs = {
@@ -19,12 +19,13 @@ module "networking" {
       name      = "gke-subnet"
       region    = "us-central1"
       cidr      = "10.10.0.0/16"
-      secondary = {
-        pods     = "10.20.0.0/16"
-        services = "10.30.0.0/20"
-      }
+      secondary = {}
     }
   }
 
   enable_nat = true
+
+  enable_private_service_access = true
+  psa_vpc_key                   = "main"
+  psa_ip_cidr_range             = "10.100.0.0/16"
 }

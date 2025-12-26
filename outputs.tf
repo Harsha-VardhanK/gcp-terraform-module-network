@@ -26,3 +26,9 @@ output "nat_config" {
   description = "Name of the NAT config (if NAT enabled)"
   value       = length(google_compute_router_nat.nat) > 0 ? google_compute_router_nat.nat[0].name : ""
 }
+
+
+# output "private_service_access_enabled" {
+#   description = "Whether Private Service Access is enabled"
+#   value       = var.enable_private_service_access
+# }
